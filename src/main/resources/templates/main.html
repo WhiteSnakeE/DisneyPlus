@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Main page</title>
+</head>
+<body>
+Hello!
+<div sec:authorize="isAuthenticated()">
+    <p>Click <a th:href="@{/hello}">here</a> to see a greeting.</p>
+    <br>
+</div>
+<p>Click <a th:href="@{/login}">here</a> to sign in.</p>
+
+<div>
+    <a th:href="@{/disney}"> Disney</a>
+    <a th:href="@{/pixar}"> Pixar</a>
+    <a th:href="@{/marvel}">Marvel</a>
+    <a th:href="@{/star-wars}"> Star Wars</a>
+    <a th:href="@{/national-geographic}">National Geographic</a>
+</div>
+<span th:text="${type1}"></span>
+<div th:each="movie:${moviesList1}">
+    <a th:href="@{/watch/{id}(id = ${movie.id})}">
+        <table>
+            <tr>
+                <th>
+                    <span th:text="${movie.name}"></span>
+                </th>
+            </tr>
+        </table>
+    </a>
+</div>
+<span th:text="${type2}"></span>
+<div th:each="movie:${moviesList2}">
+    <a th:href="@{/watch/{id}(id = ${movie.id})}">
+        <table>
+            <tr>
+                <th>
+                    <span th:text="${movie.name}"></span>
+                </th>
+            </tr>
+        </table>
+    </a>
+</div>
+<span th:text="${type3}"></span>
+<div th:each="movie:${moviesList3}">
+    <a th:href="@{/watch/{id}(id = ${movie.id})}">
+    <table>
+        <tr>
+            <th>
+                <span th:text="${movie.name}"></span>
+            </th>
+        </tr>
+    </table>
+    </a>
+</div>
+<span th:text="${type4}"></span>
+<div th:each="movie:${moviesList4}">
+    <a th:href="@{/watch/{id}(id = ${movie.id})}">
+    <table>
+        <tr>
+            <th>
+                <span th:text="${movie.name}"></span>
+            </th>
+        </tr>
+    </table>
+    </a>
+</div>
+<span th:text="${type5}"></span>
+<div th:each="movie:${moviesList5}">
+    <a th:href="@{/watch/{id}(id = ${movie.id})}">
+    <table>
+        <tr>
+            <th>
+                <span th:text="${movie.name}"></span>
+            </th>
+        </tr>
+    </table>
+    </a>
+</div>
+</body>

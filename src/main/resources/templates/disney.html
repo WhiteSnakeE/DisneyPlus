@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+Disney
+<br>
+<span th:text="${bestFriends}"></span>
+<br>
+<div th:each="movie:${bestFriendsMovies}">
+    <a th:href="@{/watch/{id}(id = ${movie.id})}">
+        <table>
+            <tr>
+                <th>
+                    <span th:text="${movie.name}"></span>
+                </th>
+            </tr>
+        </table>
+    </a>
+</div>
+</body>
+</html>
