@@ -9,9 +9,65 @@
 <body>
 Disney
 <br>
-<span th:text="${bestFriends}"></span>
+<span th:text="${firstType}"></span>
 <br>
-<div th:each="movie:${bestFriendsMovies}">
+<div th:each="movie:${firstTypeMovies}">
+    <a th:href="@{/watch/{id}(id = ${movie.id})}">
+        <table>
+            <tr>
+                <th>
+                    <span th:text="${movie.name}"></span>
+                </th>
+            </tr>
+        </table>
+    </a>
+</div>
+<br>
+<span th:text="${secondType}"></span>
+<br>
+<div th:each="movie:${secondTypeMovies}">
+    <a th:href="@{/watch/{id}(id = ${movie.id})}">
+        <table>
+            <tr>
+                <th>
+                    <span th:text="${movie.name}"></span>
+                </th>
+            </tr>
+        </table>
+    </a>
+</div>
+<br>
+<span th:text="${thirdType}"></span>
+<br>
+<div th:each="movie:${thirdTypeMovies}">
+    <a th:href="@{/watch/{id}(id = ${movie.id})}">
+        <table>
+            <tr>
+                <th>
+                    <span th:text="${movie.name}"></span>
+                </th>
+            </tr>
+        </table>
+    </a>
+</div>
+<br>
+<span th:text="${fourthType}"></span>
+<br>
+<div th:each="movie:${fourthTypeMovies}">
+    <a th:href="@{/watch/{id}(id = ${movie.id})}">
+        <table>
+            <tr>
+                <th>
+                    <span th:text="${movie.name}"></span>
+                </th>
+            </tr>
+        </table>
+    </a>
+</div>
+<br>
+<span th:text="${fifthType}"></span>
+<br>
+<div th:each="movie:${fifthTypeMovies}">
     <a th:href="@{/watch/{id}(id = ${movie.id})}">
         <table>
             <tr>

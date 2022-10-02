@@ -9,4 +9,8 @@ public interface CategoryRepository  extends JpaRepository<Category,Integer> {
     Category disney();
     @Query("select u from Category u where u.company = 'Marvel'")
     Category marvel();
+    @Query("select u from Category u where u.company = 'Pixar'")
+    Category pixar();
+    @Query("select u from Category u where u.company = 'National Geographic'")
+    Category nationalGeographic();
 }

@@ -8,8 +8,52 @@
 </head>
 <body>
 Marvel
-<span th:text="${type1}"></span>
-<div th:each="movie:${bestFriendsMovies}">
+<br>
+<span th:text="${thirdType}"></span>
+<br>
+<div th:each="movie:${thirdTypeMovies}">
+    <a th:href="@{/watch/{id}(id = ${movie.id})}">
+        <table>
+            <tr>
+                <th>
+                    <span th:text="${movie.name}"></span>
+                </th>
+            </tr>
+        </table>
+    </a>
+</div>
+<br>
+<span th:text="${fourthType}"></span>
+<br>
+<div th:each="movie:${fourthTypeMovies}">
+    <a th:href="@{/watch/{id}(id = ${movie.id})}">
+        <table>
+            <tr>
+                <th>
+                    <span th:text="${movie.name}"></span>
+                </th>
+            </tr>
+        </table>
+    </a>
+</div>
+<br>
+<span th:text="${fifthType}"></span>
+<br>
+<div th:each="movie:${fifthTypeMovies}">
+    <a th:href="@{/watch/{id}(id = ${movie.id})}">
+        <table>
+            <tr>
+                <th>
+                    <span th:text="${movie.name}"></span>
+                </th>
+            </tr>
+        </table>
+    </a>
+</div>
+<br>
+<span th:text="${sixthType}"></span>
+<br>
+<div th:each="movie:${sixthTypeMovies}">
     <a th:href="@{/watch/{id}(id = ${movie.id})}">
         <table>
             <tr>

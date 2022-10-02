@@ -3,10 +3,13 @@ package com.example.moviesandserialswebsite.service;
 import com.example.moviesandserialswebsite.entity.Movies;
 
 import java.util.List;
+import java.util.TreeSet;
 
 public interface MoviesService {
 
     public List<Movies> getAllMovies();
+
+
 
     public List<Movies> getAllMoviesByType();
 

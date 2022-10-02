@@ -4,14 +4,11 @@
       xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>search</title>
 </head>
 <body>
-National Geographic
-<br>
-<span th:text="${thirdType}"></span>
-<br>
-<div th:each="movie:${thirdTypeMovies}">
+1940s
+<div th:each="movie:${Movies1940s}">
     <a th:href="@{/watch/{id}(id = ${movie.id})}">
         <table>
             <tr>
@@ -22,10 +19,8 @@ National Geographic
         </table>
     </a>
 </div>
-<br>
-<span th:text="${fourthType}"></span>
-<br>
-<div th:each="movie:${fourthTypeMovies}">
+2010s
+<div th:each="movie:${Movies2010s}">
     <a th:href="@{/watch/{id}(id = ${movie.id})}">
         <table>
             <tr>
@@ -36,20 +31,5 @@ National Geographic
         </table>
     </a>
 </div>
-<br>
-<span th:text="${fifthType}"></span>
-<br>
-<div th:each="movie:${fifthTypeMovies}">
-    <a th:href="@{/watch/{id}(id = ${movie.id})}">
-        <table>
-            <tr>
-                <th>
-                    <span th:text="${movie.name}"></span>
-                </th>
-            </tr>
-        </table>
-    </a>
-</div>
-
 </body>
 </html>

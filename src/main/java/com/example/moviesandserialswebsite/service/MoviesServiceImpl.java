@@ -13,6 +13,7 @@ import javax.persistence.Query;
 import javax.swing.text.html.parser.Entity;
 import java.util.List;
 import java.util.Optional;
+import java.util.TreeSet;
 
 @Repository
 public class MoviesServiceImpl implements MoviesService {
@@ -23,6 +24,8 @@ public class MoviesServiceImpl implements MoviesService {
     public List<Movies> getAllMovies() {
         return moviesRepository.findAll();
     }
+
+
 
     @Override
     public List<Movies> getAllMoviesByType() {

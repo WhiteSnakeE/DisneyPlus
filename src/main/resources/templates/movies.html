@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--<select>-->
+<!--    <option value="0">Select Genre</option>-->
+<!--    <option th:each="genre:${genres}">-->
+<!--                <a th:href="@{/disney}" th:text="${genre.name}"></a>-->
+<!--    </option>-->
+<!--</select>-->
+<select >
+
+
+</select>
+
+
+<ul>
+    <li th:each="genre : ${genres}">
+        <a  th:href="@{/movies/?genre={name}(name=${genre.name})}"
+           th:text="${genre.name}"></a>
+    </li>
+</ul>
+
+<br>
+<br>
+<div th:each="movie:${MoviesByGenre}">
+    <a th:href="@{/watch/{id}(id = ${movie.id})}">
+        <table>
+            <tr>
+                <th>
+                    <span th:text="${movie.name}"></span>
+                </th>
+            </tr>
+        </table>
+    </a>
+</div>
+
+</body>
+</html>

@@ -8,5 +8,5 @@ import java.util.List;
 
 public interface TypesRepository extends JpaRepository<Type,Integer> {
     Type findByName(String name);
-    Integer findIdByName(String name);
+
 }

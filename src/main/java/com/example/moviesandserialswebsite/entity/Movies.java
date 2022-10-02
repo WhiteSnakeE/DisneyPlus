@@ -6,15 +6,16 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Table(name = "movies")
 @Getter
 @Setter
-
 @NoArgsConstructor
-public class Movies {
+public class Movies implements Comparable<Movies> {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -48,8 +49,6 @@ public class Movies {
     @ToString.Exclude
     private List<Type> types;
 
-
-
     public Movies(String name, int year, String details, String age, String time, String logo, Category category) {
         this.name = name;
         this.year = year;
@@ -58,5 +57,27 @@ public class Movies {
         this.time = time;
         this.logo = logo;
         this.category = category;
+    }
+
+    @Override
+    public int compareTo(Movies o) {
+        return this.getName().compareTo(o.getName());
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Movies movies = (Movies) o;
+        return id == movies.id && year == movies.year && Objects.equals(name, movies.name)
+                && Objects.equals(details, movies.details) && Objects.equals(age, movies.age)
+                && Objects.equals(time, movies.time) && Objects.equals(logo, movies.logo)
+                && Objects.equals(category, movies.category) && Objects.equals(libraries, movies.libraries)
+                && Objects.equals(genres, movies.genres) && Objects.equals(types, movies.types);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, year, details, age, time, logo, category, libraries, genres, types);
     }
 }

@@ -17,6 +17,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @Column(name = "login")
+    @ToString.Exclude
     private String login;
     @Column(name = "email")
     private String email;
@@ -29,6 +30,7 @@ public class User {
     private Role role;
     @OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn
+    @ToString.Exclude
     private Subscribe subscribe;
     public User() {
     }
@@ -41,4 +43,16 @@ public class User {
         this.role = role;
     }
 
+//    @Override
+//    public String toString() {
+//        return "User{" +
+//                "id=" + id +
+//                ", login='" + login + '\'' +
+//                ", email='" + email + '\'' +
+//                ", password='" + password + '\'' +
+//                ", icon='" + icon + '\'' +
+//                ", role=" + role +
+//                ", subscribe=" + subscribe +
+//                '}';
+//    }
 }
