@@ -38,8 +38,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication().dataSource(dataSource)
                 .passwordEncoder(encoder())
-                .usersByUsernameQuery("select login, password, 'true' as enabled from user where login=?")
-                .authoritiesByUsernameQuery("select login, role from user where login=?");
+                .usersByUsernameQuery("select email, password, 'true' as enabled from user where email=?")
+                .authoritiesByUsernameQuery("select email, role from user where email=?");
     }
 
     @Bean

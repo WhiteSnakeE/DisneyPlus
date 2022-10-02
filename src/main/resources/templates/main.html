@@ -15,7 +15,7 @@ Hello!
 <p>Click <a th:href="@{/login}">here</a> to sign in.</p>
 <br>
 <div sec:authorize="isAuthenticated()">
-    <p> <a th:href="@{/user-profile}">Profile</a></p>
+    <p> <a th:href="@{/profile/user-profile}">Profile</a></p>
 </div>
 <br>
 <p><a th:href="@{/movies}">Movies</a></p>
