@@ -15,6 +15,17 @@ User info:
 <br>
 <span th:text="${username.getIcon()}"></span>
 <br>
+
+<div th:each="profile:${profiles}"  >
+    <br>
+    <form th:action="@{/profile/user-profile}"  method="post" >
+        <button type="submit" th:name="profileName" th:value="${profile.getName()}"><span th:text="${profile.getName()}"></span></button>
+    </form>
+    <br>
+</div>
+<br>
+<p><a th:href="@{/profile/add-profile}">Add profile</a></p>
+<br>
 <p><a th:href="@{/profile/edit}">Edit profile</a></p>
 <br>
 <p><a th:href="@{/profile/account}">Account</a></p>

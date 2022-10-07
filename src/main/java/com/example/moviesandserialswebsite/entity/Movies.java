@@ -35,14 +35,21 @@ public class Movies implements Comparable<Movies> {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
-    @OneToMany(mappedBy = "movie")
-    @ToString.Exclude
-    private List<Library> libraries;
+//    @OneToMany(mappedBy = "movie")
+//    @ToString.Exclude
+//    private List<Library> libraries;
     @ManyToMany
     @JoinTable(name = "movies_has_genre",joinColumns = @JoinColumn(name = "movies_id"),
     inverseJoinColumns = @JoinColumn(name = "genre_id"))
     @ToString.Exclude
     private List<Genre> genres;
+
+    @ManyToMany
+    @JoinTable(name = "profile_has_movies",joinColumns = @JoinColumn(name = "movies_id"),
+            inverseJoinColumns ={ @JoinColumn(name = "profile_user_id"),@JoinColumn(name = "profile_name")})
+    @ToString.Exclude
+    private List<Profile> profiles;
+
     @ManyToMany
     @JoinTable(name = "movies_has_type",joinColumns = @JoinColumn(name = "movies_id"),
             inverseJoinColumns = @JoinColumn(name = "type_id"))
@@ -72,12 +79,12 @@ public class Movies implements Comparable<Movies> {
         return id == movies.id && year == movies.year && Objects.equals(name, movies.name)
                 && Objects.equals(details, movies.details) && Objects.equals(age, movies.age)
                 && Objects.equals(time, movies.time) && Objects.equals(logo, movies.logo)
-                && Objects.equals(category, movies.category) && Objects.equals(libraries, movies.libraries)
+                && Objects.equals(category, movies.category)
                 && Objects.equals(genres, movies.genres) && Objects.equals(types, movies.types);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, year, details, age, time, logo, category, libraries, genres, types);
+        return Objects.hash(id, name, year, details, age, time, logo, category, genres, types);
     }
 }

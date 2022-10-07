@@ -9,7 +9,7 @@
 <body>
 1940s
 <div th:each="movie:${Movies1940s}">
-    <a th:href="@{/watch/{id}(id = ${movie.id})}">
+    <a th:href="@{/movies/watch/{id}(id = ${movie.id})}">
         <table>
             <tr>
                 <th>
@@ -21,7 +21,7 @@
 </div>
 2010s
 <div th:each="movie:${Movies2010s}">
-    <a th:href="@{/watch/{id}(id = ${movie.id})}">
+    <a th:href="@{/movies/watch/{id}(id = ${movie.id})}">
         <table>
             <tr>
                 <th>

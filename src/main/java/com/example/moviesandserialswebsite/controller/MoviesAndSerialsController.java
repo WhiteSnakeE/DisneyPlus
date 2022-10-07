@@ -2,15 +2,20 @@ package com.example.moviesandserialswebsite.controller;
 
 import com.example.moviesandserialswebsite.dao.GenresRepository;
 import com.example.moviesandserialswebsite.dao.MoviesRepository;
+import com.example.moviesandserialswebsite.dao.UserRepository;
 import com.example.moviesandserialswebsite.entity.Genre;
 import com.example.moviesandserialswebsite.entity.Movies;
+import com.example.moviesandserialswebsite.entity.User;
+import com.example.moviesandserialswebsite.service.MoviesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.Principal;
 import java.util.*;
 
 @Controller
@@ -19,6 +24,10 @@ public class MoviesAndSerialsController {
     MoviesRepository  moviesRepository;
     @Autowired
     GenresRepository genresRepository;
+    @Autowired
+    private MoviesService moviesService;
+    @Autowired
+    UserRepository userRepository;
 
 
 //    @GetMapping("/movies")
@@ -50,4 +59,6 @@ public class MoviesAndSerialsController {
     public String serials(){
         return "serials";
     }
+
+
 }

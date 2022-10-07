@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "user")
@@ -32,6 +33,8 @@ public class User {
     @PrimaryKeyJoinColumn
     @ToString.Exclude
     private Subscribe subscribe;
+    @OneToMany(mappedBy = "userId")
+    List<Profile> profiles;
     public User() {
     }
 

@@ -8,5 +8,10 @@
 </head>
 <body>
     <span th:text = "${movie.name}"> </span>
+<br>
+<form th:action="@{/movies/watch/{id}(id =${movie.getId()})}" method="post">
+<button type="submit">Add to Watchlist</button>
+</form>
 </body>
+
 </html>

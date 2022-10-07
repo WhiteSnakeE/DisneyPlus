@@ -1,11 +1,11 @@
 package com.example.moviesandserialswebsite.controller;
 
-import com.example.moviesandserialswebsite.dao.CategoryRepository;
-import com.example.moviesandserialswebsite.dao.MoviesRepository;
-import com.example.moviesandserialswebsite.dao.TypesRepository;
+import com.example.moviesandserialswebsite.dao.*;
 import com.example.moviesandserialswebsite.entity.Movies;
 
+import com.example.moviesandserialswebsite.entity.User;
 import com.example.moviesandserialswebsite.service.MoviesService;
+import com.example.moviesandserialswebsite.service.UserServiceImpl;
 import com.example.moviesandserialswebsite.typeReader.TypeReaderDisney;
 import com.example.moviesandserialswebsite.typeReader.TypeReaderMarvel;
 import com.example.moviesandserialswebsite.typeReader.TypeReaderNG;
@@ -15,7 +15,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -34,9 +36,19 @@ public class CategoryController {
     TypeReaderPixar typeReaderPixar;
     @Autowired
     TypeReaderMarvel typeReaderMarvel;
-
     @Autowired
     TypeReaderNG typeReaderNG;
+
+    @Autowired
+    UserController userController;
+    @Autowired
+    UserServiceImpl userService;
+
+    @Autowired
+    ProfilesRepository profilesRepository;
+
+    @Autowired
+    UserRepository userRepository;
 
     @GetMapping({"/", ""})
     public String mainPage(Model model) {
@@ -62,13 +74,19 @@ public class CategoryController {
         model.addAttribute("type5", s5);
         return "main";
     }
-    @GetMapping("/watch/{id}")
+    @GetMapping("/movies/watch/{id}")
     private String watch(Model model, @PathVariable int id){
         Movies movies = moviesService.getMovie(id);
         model.addAttribute("movie",movies);
         return "watch";
-
     }
+    @PostMapping("/movies/watch/{id}")
+    public String addToWatchList(@PathVariable int id, Principal principal){
+        User user = userRepository.findUserByEmail(principal.getName());
+        moviesRepository.addMovieToProfile(user.getId(), userController.getName(), id);
+        return "redirect:{id}";
+    }
+
     @GetMapping("/hello")
     public String hello() {
         return "hello";
