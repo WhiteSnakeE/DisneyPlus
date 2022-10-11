@@ -14,6 +14,9 @@ public interface ProfilesRepository extends CrudRepository<Profile, ProfileID> {
     @Query(value = "select name from profile where user_id = :id  limit 1;",nativeQuery = true)
     String currentProfile(int id);
 
+    @Query(value = "select * from profile where user_id = :id and name = :name limit 1;",nativeQuery = true)
+    Profile findProfileByIdAndSUserName(int id,String name);
+
     @Modifying
     @Transactional
     @Query(value = "insert into profile values(:id, :profileName);",nativeQuery = true)

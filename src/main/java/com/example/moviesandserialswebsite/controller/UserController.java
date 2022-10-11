@@ -79,19 +79,40 @@ public class UserController {
     }
 
     @GetMapping("/edit")
-    public String edit(){
+    public String edit(Model model,Principal principal){
+
+        model.addAttribute("profile",getName());
         return "profile/edit";
     }
 
     @PostMapping("/edit")
     public String edit(@RequestParam("edit") String editProfile,Principal principal){
-        String currentProfile = getName();
+//        User user = userRepository.findUserByEmail(principal.getName());
+//        String currentProfile = getName();
+//        Profile profile = profilesRepository.findProfileByIdAndSUserName(user.getId(),currentProfile);
+//        profile.setName(editProfile);
+//        profilesRepository.save(profile);
+
         return "profile/user-profile";
     }
 
 
     @GetMapping("/account")
-    public String account(){
+    public String account(Model model,Principal principal) {
+        User user = userRepository.findUserByEmail(principal.getName());
+        model.addAttribute("user",user);
+        return "profile/account";
+    }
+    @PostMapping("/account")
+    public String account(Principal principal,@ModelAttribute User updateUser) {
+        User user = userRepository.findUserByEmail(principal.getName());
+        user.setLogin(updateUser.getLogin());
+        if(!user.getEmail().equals(updateUser.getEmail())){
+            user.setEmail(updateUser.getEmail());
+            userRepository.save(user);
+            return "/login";
+        }
+        userRepository.save(user);
         return "profile/account";
     }
 

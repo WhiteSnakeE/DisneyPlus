@@ -6,8 +6,8 @@
 </head>
 <body>
 <form th:action="@{/profile/edit}" method="post">
-    <input type="text" name ="edit"/>
-    <div><input type="submit" value="Add"/></div>
+    <input type="text"  th:placeholder="${profile}" name ="edit"/>
+    <div><input type="submit" value="Edit"/></div>
 </form>
 </body>
 </html>
