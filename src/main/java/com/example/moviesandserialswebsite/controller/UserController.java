@@ -4,10 +4,7 @@ package com.example.moviesandserialswebsite.controller;
 import com.example.moviesandserialswebsite.dao.MoviesRepository;
 import com.example.moviesandserialswebsite.dao.ProfilesRepository;
 import com.example.moviesandserialswebsite.dao.UserRepository;
-import com.example.moviesandserialswebsite.entity.Library;
-import com.example.moviesandserialswebsite.entity.Movies;
-import com.example.moviesandserialswebsite.entity.Profile;
-import com.example.moviesandserialswebsite.entity.User;
+import com.example.moviesandserialswebsite.entity.*;
 import com.example.moviesandserialswebsite.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -17,7 +14,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Locale;
 
 @Controller
 @RequestMapping("/profile")
@@ -82,8 +84,8 @@ public class UserController {
     }
 
     @PostMapping("/edit")
-    public String edit(Model model){
-
+    public String edit(@RequestParam("edit") String editProfile,Principal principal){
+        String currentProfile = getName();
         return "profile/user-profile";
     }
 
@@ -105,6 +107,29 @@ public class UserController {
         }
         return "profile/watch-list";
     }
+    @GetMapping("/subscribe")
+    private String subPage(Principal principal,Model model){
+        User user = userRepository.findUserByEmail(principal.getName());
+        Subscribe subscribe = user.getSubscribe();
+        if(subscribe.getEnd()!=null) {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss", Locale.US);
+            String end = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss").format(subscribe.getEnd());
+            model.addAttribute("end", end);
+        }
+        else model.addAttribute("end", null);
+        return "profile/subscribe";
+    }
 
-
+    @PostMapping("/subscribe")
+    private String buySubscribe(Model model,Principal principal){
+        User user = userRepository.findUserByEmail(principal.getName());
+        user.getSubscribe().setEnd(LocalDateTime.now().plusMonths(1));
+        user.getSubscribe().setStatus(true);
+        user.getSubscribe().setStart(LocalDateTime.now());
+        userRepository.save(user);
+        Subscribe subscribe = user.getSubscribe();
+        model.addAttribute("end",subscribe);
+        model.addAttribute("start",user.getSubscribe().getStart());
+        return "redirect:subscribe";
+    }
 }

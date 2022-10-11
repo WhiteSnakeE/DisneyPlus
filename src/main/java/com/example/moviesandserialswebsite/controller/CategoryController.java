@@ -74,18 +74,7 @@ public class CategoryController {
         model.addAttribute("type5", s5);
         return "main";
     }
-    @GetMapping("/movies/watch/{id}")
-    private String watch(Model model, @PathVariable int id){
-        Movies movies = moviesService.getMovie(id);
-        model.addAttribute("movie",movies);
-        return "watch";
-    }
-    @PostMapping("/movies/watch/{id}")
-    public String addToWatchList(@PathVariable int id, Principal principal){
-        User user = userRepository.findUserByEmail(principal.getName());
-        moviesRepository.addMovieToProfile(user.getId(), userController.getName(), id);
-        return "redirect:{id}";
-    }
+
 
     @GetMapping("/hello")
     public String hello() {

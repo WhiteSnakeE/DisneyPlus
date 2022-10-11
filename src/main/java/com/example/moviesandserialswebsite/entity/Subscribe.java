@@ -24,7 +24,6 @@ public class Subscribe {
     @OneToOne
     @MapsId
     @JoinColumn(name = "user_id")
-    @ToString.Exclude
     private User user;
 
     public Subscribe() {

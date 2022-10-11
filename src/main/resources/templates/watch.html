@@ -7,11 +7,13 @@
     <title>Main page</title>
 </head>
 <body>
-    <span th:text = "${movie.name}"> </span>
+<span th:text="${movie.name}"> </span>
 <br>
+<span th:if="${ifPresent == false}">
 <form th:action="@{/movies/watch/{id}(id =${movie.getId()})}" method="post">
 <button type="submit">Add to Watchlist</button>
 </form>
+    </span>
 </body>
 
 </html>

@@ -31,7 +31,6 @@ public class User {
     private Role role;
     @OneToOne(mappedBy = "user",cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn
-    @ToString.Exclude
     private Subscribe subscribe;
     @OneToMany(mappedBy = "userId")
     List<Profile> profiles;

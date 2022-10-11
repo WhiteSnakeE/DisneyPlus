@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<span th:if="${end != null}">
+Sub will be active until to
+<span th:text = "${end}"></span>
+<br>
+
+</span>
+<span th:if="${end == null}">
+Buy sub
+<br>
+    <form th:action="@{/profile/subscribe}"  method="post" >
+    <button type="submit" >Buy sub</button>
+</form>
+</span>
+
+<br>
+
+</body>
+</html>
