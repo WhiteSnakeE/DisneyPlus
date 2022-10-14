@@ -15,7 +15,6 @@ public class FindTextLine {
             BufferedReader reader = new BufferedReader(new FileReader(file));
             while((line = reader.readLine()) != null) {
                 if (count == lineCount) {
-                    System.out.println(line);
                     break;
                 }
                 count++;

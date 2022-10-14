@@ -19,11 +19,12 @@ public interface ProfilesRepository extends CrudRepository<Profile, ProfileID> {
 
     @Modifying
     @Transactional
-    @Query(value = "insert into profile values(:id, :profileName);",nativeQuery = true)
+    @Query(value = "insert into profile values(:id, :profileName,null);",nativeQuery = true)
     void addProfileToUser(int id, String profileName);
 
     @Query(value = "SELECT CASE WHEN COUNT(*) = 1 THEN 'true' ELSE 'false' END from profile_has_movies " +
             "where profile_user_id = :userId and profile_name = :profileName\n" +
             " and movies_id in(select id from movies where id = :movieId);",nativeQuery = true)
     boolean ifUserHasThisMovie( int userId, String profileName, int movieId);
+
 }

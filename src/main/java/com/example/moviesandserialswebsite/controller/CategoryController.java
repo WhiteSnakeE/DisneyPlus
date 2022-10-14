@@ -1,8 +1,10 @@
 package com.example.moviesandserialswebsite.controller;
 
 import com.example.moviesandserialswebsite.dao.*;
+import com.example.moviesandserialswebsite.entity.Icon;
 import com.example.moviesandserialswebsite.entity.Movies;
 
+import com.example.moviesandserialswebsite.entity.Profile;
 import com.example.moviesandserialswebsite.entity.User;
 import com.example.moviesandserialswebsite.service.MoviesService;
 import com.example.moviesandserialswebsite.service.UserServiceImpl;
@@ -16,6 +18,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
 import java.util.List;
@@ -38,7 +41,8 @@ public class CategoryController {
     TypeReaderMarvel typeReaderMarvel;
     @Autowired
     TypeReaderNG typeReaderNG;
-
+    @Autowired
+    IconRepository iconRepository;
     @Autowired
     UserController userController;
     @Autowired
@@ -46,34 +50,11 @@ public class CategoryController {
 
     @Autowired
     ProfilesRepository profilesRepository;
-
+    @Autowired
+    IconTypeRepository iconTypeRepository;
     @Autowired
     UserRepository userRepository;
 
-    @GetMapping({"/", ""})
-    public String mainPage(Model model) {
-        String s1 = "Nostalgic Movies";
-        String s2 = "Recommended for you";
-        String s3 = "Hit Movies";
-        String s4 = "Action And Adventure";
-        String s5 = "Marvel Cinematic: Universe Phase one";
-        List<Movies> moviesList1 = moviesRepository.findMoviesByTypesName(s1);
-        List<Movies> moviesList2 = moviesRepository.findMoviesByTypesName(s2);
-        List<Movies> moviesList3 = moviesRepository.findMoviesByTypesName(s3);
-        List<Movies> moviesList4 = moviesRepository.findMoviesByTypesName(s4);
-        List<Movies> moviesList5 = moviesRepository.findMoviesByTypesName(s5);
-        model.addAttribute("moviesList1", moviesList1);
-        model.addAttribute("moviesList2", moviesList2);
-        model.addAttribute("moviesList3", moviesList3);
-        model.addAttribute("moviesList4", moviesList4);
-        model.addAttribute("moviesList5", moviesList5);
-        model.addAttribute("type1", s1);
-        model.addAttribute("type2", s2);
-        model.addAttribute("type3", s3);
-        model.addAttribute("type4", s4);
-        model.addAttribute("type5", s5);
-        return "main";
-    }
 
 
     @GetMapping("/hello")

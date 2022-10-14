@@ -5,17 +5,13 @@
     <title>Title</title>
 </head>
 <body>
-<!--<form th:action="@{/profile/edit}" method="post">-->
-<!--    <input type="text"  th:placeholder="${profile}" name ="edit"/>-->
-<!--    <div><input type="submit" value="Edit"/></div>-->
-<!--</form>-->
 <br>
 <span th:text = "${disney}"></span>
 <br>
 <div th:each="icon:${icons}">
     <br>
     <img width="50" height="50" th:src="${icon.getIcon()}">
-    <form th:action="@{/profile/edit}"  method="post" >
+    <form th:action="@{/first-profile-step-two}"  method="post" >
         <button type="submit" th:name="profileIcon" th:value="${icon.getIcon()}">Select</button>
     </form>
     <br>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/first-profile-step-one}" method="post">
+    <input type="text" name ="addProfile"/>
+    <div><input type="submit" value="Add"/></div>
+</form>
+<br>
+<span th:text = "${disney}"></span>
+<br>
+
+</body>
+</html>

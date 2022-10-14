@@ -1,9 +1,7 @@
 package com.example.moviesandserialswebsite.controller;
 
 
-import com.example.moviesandserialswebsite.dao.MoviesRepository;
-import com.example.moviesandserialswebsite.dao.ProfilesRepository;
-import com.example.moviesandserialswebsite.dao.UserRepository;
+import com.example.moviesandserialswebsite.dao.*;
 import com.example.moviesandserialswebsite.entity.*;
 import com.example.moviesandserialswebsite.service.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +16,7 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
@@ -32,6 +31,10 @@ public class UserController {
     UserServiceImpl userService;
     @Autowired
     ProfilesRepository profilesRepository;
+    @Autowired
+    IconRepository iconRepository;
+    @Autowired
+    IconTypeRepository iconTypeRepository;
 
     public String name;
 
@@ -53,6 +56,9 @@ public class UserController {
     public String profile(Principal principal, Model model){
         User username = userRepository.findUserByEmail(principal.getName());
         List<Profile> profiles = username.getProfiles();
+        Profile profile = profilesRepository.findProfileByIdAndSUserName(username.getId(),getName());
+        String icon = profile.getIcon().getIcon();
+        model.addAttribute("icon",icon);
         model.addAttribute("username",username);
         model.addAttribute("profiles",profiles);
         return "profile/user-profile";
@@ -67,33 +73,34 @@ public class UserController {
 
     @GetMapping("/add-profile")
     public String addProfile(){
-        return "profile/add-profile";
+        return "/first-profile-step-one";
     }
 
-    @PostMapping("/add-profile")
-    public String addProfile(@RequestParam("addProfile") String addProfile,Principal principal){
-       User user = userRepository.findUserByEmail(principal.getName());
-        profilesRepository.addProfileToUser(user.getId(), addProfile);
-
-        return "redirect:user-profile";
-    }
+//    @PostMapping("/add-profile")
+//    public String addProfile(@RequestParam("addProfile") String addProfile,Principal principal){
+//       User user = userRepository.findUserByEmail(principal.getName());
+//        profilesRepository.addProfileToUser(user.getId(), addProfile);
+//
+//        return "redirect:user-profile";
+//    }
 
     @GetMapping("/edit")
-    public String edit(Model model,Principal principal){
-
+    public String edit(Model model){
+        List<Icon> iconList = iconRepository.findIconsByIconType(iconTypeRepository.disney());
+        model.addAttribute("disney",iconTypeRepository.disney());
+        model.addAttribute("icons",iconList);
         model.addAttribute("profile",getName());
         return "profile/edit";
     }
 
     @PostMapping("/edit")
-    public String edit(@RequestParam("edit") String editProfile,Principal principal){
-//        User user = userRepository.findUserByEmail(principal.getName());
-//        String currentProfile = getName();
-//        Profile profile = profilesRepository.findProfileByIdAndSUserName(user.getId(),currentProfile);
-//        profile.setName(editProfile);
-//        profilesRepository.save(profile);
+    public String edit(@RequestParam("profileIcon") String profileIcon,Principal principal){
+        User user = userRepository.findUserByEmail(principal.getName());
+            Profile profile = profilesRepository.findProfileByIdAndSUserName(user.getId(),getName());
+            profile.setIcon(iconRepository.findByName(profileIcon));
+            profilesRepository.save(profile);
 
-        return "profile/user-profile";
+        return "redirect:edit";
     }
 
 

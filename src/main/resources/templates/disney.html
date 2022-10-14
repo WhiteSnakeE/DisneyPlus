@@ -12,7 +12,7 @@ Disney
 <span th:text="${firstType}"></span>
 <br>
 <div th:each="movie:${firstTypeMovies}">
-    <a th:href="@{/watch/{id}(id = ${movie.id})}">
+    <a th:href="@{/movies/watch/{id}(id = ${movie.id})}">
         <table>
             <tr>
                 <th>
@@ -26,7 +26,7 @@ Disney
 <span th:text="${secondType}"></span>
 <br>
 <div th:each="movie:${secondTypeMovies}">
-    <a th:href="@{/watch/{id}(id = ${movie.id})}">
+    <a th:href="@{/movies/watch/{id}(id = ${movie.id})}">
         <table>
             <tr>
                 <th>
@@ -40,7 +40,7 @@ Disney
 <span th:text="${thirdType}"></span>
 <br>
 <div th:each="movie:${thirdTypeMovies}">
-    <a th:href="@{/watch/{id}(id = ${movie.id})}">
+    <a th:href="@{/movies/watch/{id}(id = ${movie.id})}">
         <table>
             <tr>
                 <th>
@@ -54,7 +54,7 @@ Disney
 <span th:text="${fourthType}"></span>
 <br>
 <div th:each="movie:${fourthTypeMovies}">
-    <a th:href="@{/watch/{id}(id = ${movie.id})}">
+    <a th:href="@{/movies/watch/{id}(id = ${movie.id})}">
         <table>
             <tr>
                 <th>
@@ -68,7 +68,7 @@ Disney
 <span th:text="${fifthType}"></span>
 <br>
 <div th:each="movie:${fifthTypeMovies}">
-    <a th:href="@{/watch/{id}(id = ${movie.id})}">
+    <a th:href="@{/movies/watch/{id}(id = ${movie.id})}">
         <table>
             <tr>
                 <th>

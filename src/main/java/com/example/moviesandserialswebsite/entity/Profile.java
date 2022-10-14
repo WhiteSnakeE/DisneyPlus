@@ -4,7 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.rest.core.config.Projection;
 
 import javax.persistence.*;
@@ -15,6 +14,8 @@ import java.util.List;
 @Table(name = "profile")
 @NoArgsConstructor
 @AllArgsConstructor
+@Setter
+@Getter
 @Projection(name = "deadline", types = { ProfileID.class })
 public class Profile {
     @Id
@@ -28,29 +29,9 @@ public class Profile {
 
     @ManyToMany(mappedBy = "profiles")
     private List<Movies> movies;
+    @ManyToOne
+    @JoinColumn( name = "icon_id")
+    private Icon icon;
 
 
-    public User getUserId() {
-        return userId;
-    }
-
-    public void setUserId(User userId) {
-        this.userId = userId;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public List<Movies> getMovies() {
-        return movies;
-    }
-
-    public void setMovies(List<Movies> movies) {
-        this.movies = movies;
-    }
 }

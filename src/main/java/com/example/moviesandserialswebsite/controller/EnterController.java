@@ -42,6 +42,6 @@ public class EnterController {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRole(Role.USER);
         userRepository.save(user);
-        return "redirect:/";
+        return "login";
     }
 }
